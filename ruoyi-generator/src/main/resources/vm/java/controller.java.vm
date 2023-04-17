@@ -3,33 +3,33 @@ package ${packageName}.controller;
 import java.util.List;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.ruoyi.common.annotation.Log;
-import com.ruoyi.common.enums.BusinessType;
+import vip.zengshuai.common.annotation.Log;
+import vip.zengshuai.common.enums.BusinessType;
 import ${packageName}.domain.${ClassName};
 import ${packageName}.service.I${ClassName}Service;
-import com.ruoyi.common.core.controller.BaseController;
-import com.ruoyi.common.core.domain.AjaxResult;
-import com.ruoyi.common.utils.poi.ExcelUtil;
+import vip.zengshuai.common.core.controller.BaseController;
+import vip.zengshuai.common.core.domain.AjaxResult;
+import vip.zengshuai.common.utils.poi.ExcelUtil;
 #if($table.crud || $table.sub)
-import com.ruoyi.common.core.page.TableDataInfo;
+import vip.zengshuai.common.core.page.TableDataInfo;
 #elseif($table.tree)
-import com.ruoyi.common.utils.StringUtils;
-import com.ruoyi.common.core.domain.Ztree;
+import vip.zengshuai.common.utils.StringUtils;
+import vip.zengshuai.common.core.domain.Ztree;
 #end
 
 /**
  * ${functionName}Controller
- * 
+ *
  * @author ${author}
  * @date ${datetime}
  */
+@Api("${functionName}")
 @Controller
 @RequestMapping("/${moduleName}/${businessName}")
 public class ${ClassName}Controller extends BaseController
@@ -50,6 +50,7 @@ public class ${ClassName}Controller extends BaseController
     /**
      * 查询${functionName}列表
      */
+    @ApiOperation("查询${functionName}列表")
     @RequiresPermissions("${permissionPrefix}:list")
     @PostMapping("/list")
     @ResponseBody
@@ -63,6 +64,7 @@ public class ${ClassName}Controller extends BaseController
     /**
      * 查询${functionName}树列表
      */
+    @ApiOperation("查询${functionName}树列表")
     @RequiresPermissions("${permissionPrefix}:list")
     @PostMapping("/list")
     @ResponseBody
@@ -76,6 +78,7 @@ public class ${ClassName}Controller extends BaseController
     /**
      * 导出${functionName}列表
      */
+    @ApiOperation("导出${functionName}列表")
     @RequiresPermissions("${permissionPrefix}:export")
     @Log(title = "${functionName}", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
@@ -114,6 +117,7 @@ public class ${ClassName}Controller extends BaseController
     /**
      * 新增保存${functionName}
      */
+    @ApiOperation("新增保存${functionName}")
     @RequiresPermissions("${permissionPrefix}:add")
     @Log(title = "${functionName}", businessType = BusinessType.INSERT)
     @PostMapping("/add")
@@ -138,6 +142,7 @@ public class ${ClassName}Controller extends BaseController
     /**
      * 修改保存${functionName}
      */
+    @ApiOperation("修改保存${functionName}")
     @RequiresPermissions("${permissionPrefix}:edit")
     @Log(title = "${functionName}", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
@@ -151,6 +156,7 @@ public class ${ClassName}Controller extends BaseController
     /**
      * 删除${functionName}
      */
+    @ApiOperation("删除${functionName}")
     @RequiresPermissions("${permissionPrefix}:remove")
     @Log(title = "${functionName}", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
@@ -163,6 +169,7 @@ public class ${ClassName}Controller extends BaseController
     /**
      * 删除
      */
+    @ApiOperation("删除${functionName}")
     @RequiresPermissions("${permissionPrefix}:remove")
     @Log(title = "${functionName}", businessType = BusinessType.DELETE)
     @GetMapping("/remove/{${pkColumn.javaField}}")
@@ -191,6 +198,7 @@ public class ${ClassName}Controller extends BaseController
     /**
      * 加载${functionName}树列表
      */
+    @ApiOperation("加载${functionName}树列表")
     @GetMapping("/treeData")
     @ResponseBody
     public List<Ztree> treeData()

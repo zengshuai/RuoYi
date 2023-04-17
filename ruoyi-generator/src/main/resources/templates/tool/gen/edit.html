@@ -74,14 +74,14 @@
 				                </div>
 				            </div>
                             </div>
-                            
+
                             <!-- 字段信息 -->
                             <div class="tab-pane active" id="tab-field">
                                 <div class="select-table table-striped" style="margin-top: 0px;padding-top: 0px;padding-bottom: 0px;">
 								    <table id="bootstrap-table" data-use-row-attr-func="true" data-reorderable-rows="true"></table>
 								</div>
                             </div>
-                            
+
                             <!-- 生成信息 -->
                             <div class="tab-pane" id="tab-gen">
 					            <div class="row mt20">
@@ -99,7 +99,7 @@
 					                </div>
 					                <div class="col-sm-6">
 					                    <div class="form-group">
-					                        <label class="col-sm-4 control-label is-required" title="生成在哪个java包下，例如 com.ruoyi.project.system">生成包路径：<i class="fa fa-question-circle-o"></i></label>
+					                        <label class="col-sm-4 control-label is-required" title="生成在哪个java包下，例如 vip.zengshuai.project.system">生成包路径：<i class="fa fa-question-circle-o"></i></label>
 					                        <div class="col-sm-8">
 					                            <input name="packageName" class="form-control" type="text" placeholder="请输入生成包路径" maxlength="100" th:field="*{packageName}" required>
 					                        </div>
@@ -151,8 +151,8 @@
 					                    <div class="form-group">
 					                        <label class="col-sm-4 control-label" title="默认为zip压缩包下载，也可以自定义生成路径">生成代码方式：<i class="fa fa-question-circle-o"></i></label>
 					                        <div class="col-sm-8">
-                                                <label class="radio-box"> <input type="radio" name="genType" value="0" th:field="*{genType}" /> zip压缩包 </label> 
-                                                <label class="radio-box"> <input type="radio" name="genType" value="1" th:field="*{genType}" /> 自定义路径</label> 
+                                                <label class="radio-box"> <input type="radio" name="genType" value="0" th:field="*{genType}" /> zip压缩包 </label>
+                                                <label class="radio-box"> <input type="radio" name="genType" value="1" th:field="*{genType}" /> 自定义路径</label>
 					                        </div>
 					                    </div>
 					                </div>
@@ -270,7 +270,7 @@
 	    	},
 			focusCleanup: true
 		});
-	    
+
 	    /* 表级联信息 */
    		var data = [[${data}]];
     	$('#subInfo').cxSelect({
@@ -278,13 +278,13 @@
     	  jsonValue: 'v',
     	  data: data
     	});
-	    
+
 	    function submitHandler() {
 	        if ($.validate.form()) {
 	        	$.operate.saveTab(prefix + "/edit", $("#form-gen-edit").serializeArray());
 	        }
 	    }
-	    
+
 	    var prefix = ctx + "tool/gen";
 		$(function() {
 		    var options = {
@@ -442,7 +442,7 @@
 		    };
 		    $.table.init(options);
 		});
-		
+
 		// 当所有数据被加载时触发处理函数
 		function onLoadSuccess(data){
 			$.fn.select2.defaults.set( "theme", "bootstrap" );
@@ -457,26 +457,26 @@
             	})
         	})
         }
-		
+
 		// 当拖拽结束后处理函数
 		function onReorderRow(data) {
 	        for (var i = 0; i < data.length; i++) {
 			    $("#columns_sort_" + data[i].columnId).val(i+1);
 			}
        }
-		
+
 		$(function() {
             var tplCategory = $("#tplCategory option:selected").val();
             tplCategoryVisible(tplCategory);
             var genType = $('input[name="genType"]:checked').val();
             pathInfoVisible(genType);
         });
-		
+
 		$('#tplCategory').on('select2:select', function (event) {
 			var tplCategory = $(event.target).val();
 			tplCategoryVisible(tplCategory);
 		});
-		
+
 		function tplCategoryVisible(tplCategory) {
 			if("crud" == tplCategory){
 				$("#treeCode").select2("val", [""]);
@@ -500,12 +500,12 @@
 				$("#otherInfo").addClass("hidden");
 			}
         }
-		
+
 		$('input').on('ifChecked', function(event){
 			var genType = $(event.target).val();
 			pathInfoVisible(genType);
 		});
-		
+
 		function pathInfoVisible(genType) {
 			if("0" == genType){
 				$("#genPath").val("/");
@@ -514,7 +514,7 @@
 				$("#pathinfo").removeClass("hidden");
 			}
 		}
-		
+
 		// 选择字典处理函数
 		function selectDictTree(columnId, obj) {
 			var dictType = $.common.nullToStr($(obj).parent().find("input").val());
@@ -527,7 +527,7 @@
 			};
 			$.modal.openOptions(options);
 		}
-		
+
 		// 选择菜单处理函数
         function selectMenuTree() {
         	var parentMenuId = $("#parentMenuId").val();
@@ -541,7 +541,7 @@
 			};
 			$.modal.openOptions(options);
 		}
-		
+
 		function doDictSubmit(index, layero){
 			var body = $.modal.getChildFrame(index);
    			var columnId = body.find('#columnId').val();
@@ -549,7 +549,7 @@
    			$.modal.close(index);
    			$("#columns_dict_" + columnId).val(dictType);
 		}
-		
+
 		function doMenuSubmit(index, layero){
 			var body = $.modal.getChildFrame(index);
    			$("#parentMenuId").val(body.find('#treeId').val());
